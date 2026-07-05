@@ -3,8 +3,8 @@ from typing import Optional
 from bson.objectid import ObjectId
 
 class Project(BaseModel):
-    _id:Optional[ObjectId] = Field(None, alias="_id")
-    project_id:str=Field(..., min_length=1)
+    id: Optional[ObjectId] = Field(None, alias="_id")
+    project_id: str = Field(..., min_length=1)
 
     @validator("project_id")
     def validate_project_id(cls, value):
@@ -13,5 +13,5 @@ class Project(BaseModel):
 
         return value
 
-    class config:
+    class Config:
         arbitrary_types_allowed = True
