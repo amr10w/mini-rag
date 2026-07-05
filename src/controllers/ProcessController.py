@@ -3,12 +3,12 @@ from .ProjectController import ProjectController
 import os
 from langchain_community.document_loaders import TextLoader
 from langchain_community.document_loaders import PyMuPDFLoader
-from langchain_text_spliters import RecursiveCharacterTextSplitter
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 from models import ProcessingEnum
 
 
-class ProcessContoller(BaseController):
-    def __init__(self,projeect_id:str):
+class ProcessController(BaseController):
+    def __init__(self,project_id:str):
         super().__init__()
         self.project_id = project_id
         self.project_path=ProjectController.get_project_path(
@@ -37,7 +37,7 @@ class ProcessContoller(BaseController):
         loader=self.get_file_loader(file_id=file_id)
         return loader.load() 
     
-     def process_file_content(self, file_content: list, file_id: str,
+    def process_file_content(self, file_content: list, file_id: str,
                             chunk_size: int=100, overlap_size: int=20):
         
         text_splitter = RecursiveCharacterTextSplitter(
@@ -60,4 +60,3 @@ class ProcessContoller(BaseController):
             metadatas=file_content_metadata
         )
         return chunks
-        
