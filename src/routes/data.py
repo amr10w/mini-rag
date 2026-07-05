@@ -60,7 +60,7 @@ async def upload_data(project_id: str, file: UploadFile,
             }
         )
 
-@data_router.get("/peocess/{project_id}")
+@data_router.post("/process/{project_id}")
 async def process_endpoint(project_id: str, process_request: ProcessRequest):
     file_id = process_request.file_id
     chunk_size = process_request.chunk_size
@@ -86,5 +86,5 @@ async def process_endpoint(project_id: str, process_request: ProcessRequest):
         )
 
     return file_chunks
-    
+
 
